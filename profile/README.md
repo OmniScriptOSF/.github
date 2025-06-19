@@ -1,39 +1,60 @@
 # OmniScriptOSF 🚀
 
-**OmniScriptOSF** is the home of **OmniScript Format (OSF)** — the next-generation, universal document DSL (Domain Specific Language) designed for:
-- 🌟 Agentic AI and LLMs
-- 🌟 Git-native, plain-text document versioning
-- 🌟 Seamless integration of prose, slides, and spreadsheets
-
-OSF unifies the strengths of **Markdown**, **LaTeX**, **DOCX/PPTX/XLSX**, **YAML**, and **JSON** into one simple, extensible format for the future of intelligent documents.
-
----
-
-## 🔑 What we build
-
-✅ The formal OSF specification and schemas  
-✅ Reference parser and CLI tooling (`omniscript-core`)  
-✅ Converters for DOCX, PPTX, XLSX, Markdown, LaTeX, YAML  
-✅ Editor integrations (e.g. VSCode extension)  
-✅ Example OSF documents for learning, testing, and community contribution  
-✅ The official OSF documentation site and playground  
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Discussions](https://img.shields.io/github/discussions/OmniScriptOSF/omniscript-core)](https://github.com/OmniScriptOSF/omniscript-core/discussions)
+[![CI](https://img.shields.io/github/actions/workflow/status/OmniScriptOSF/omniscript-core/ci.yml?branch=main&label=CI)](https://github.com/OmniScriptOSF/omniscript-core/actions)
+![Format](https://img.shields.io/badge/format-OSF-blue)
+![Status](https://img.shields.io/badge/status-in_development-orange)
 
 ---
 
-## 🤝 How to contribute
+**OmniScriptOSF** is the home of **OmniScript Format (OSF)** — the universal document DSL for agentic AI, LLMs, and Git-native workflows.
 
-🌈 We welcome contributions of all kinds: code, docs, ideas, testing, examples!  
-📖 Check out [omniscript-core](https://github.com/OmniScriptOSF/omniscript-core) to get started.  
-💬 Join the conversation in our [Discussions](https://github.com/OmniScriptOSF/omniscript-core/discussions).  
-📝 Please read our [Contributing Guidelines](https://github.com/OmniScriptOSF/omniscript-core/blob/main/CONTRIBUTING.md).  
+OSF combines the strengths of:
+- **Markdown / LaTeX**: expressive prose, math, structure
+- **DOCX / PPTX**: rich styles, slides, transitions
+- **XLSX / YAML / JSON**: data tables, live formulas, charts
+
+🌟 One file format. All your documents, slides, and data — LLM-ready, plain text, versionable.
 
 ---
 
-## 🌐 Useful resources
+## 📦 Featured Repositories
 
-- **Spec & Roadmap:** Coming soon in [`omniscript-core/spec/`](https://github.com/OmniScriptOSF/omniscript-core/tree/main/spec)
-- **Examples:** Will be hosted at [`omniscript-examples`](https://github.com/OmniScriptOSF/omniscript-examples)
-- **Website & Playground:** Coming soon at *omniscript.dev*
+- [`omniscript-core`](https://github.com/OmniScriptOSF/omniscript-core) — OSF spec, parser, CLI tooling.
+- [`omniscript-vscode`](https://github.com/OmniScriptOSF/omniscript-vscode) — VSCode extension for OSF files.
+- [`omniscript-converters`](https://github.com/OmniScriptOSF/omniscript-converters) — Convert OSF ↔ DOCX, PPTX, XLSX, Markdown, LaTeX.
+- [`omniscript-examples`](https://github.com/OmniScriptOSF/omniscript-examples) — Canonical and community OSF examples.
+
+---
+
+## 📈 Roadmap
+
+✅ OSF v1.0 spec draft  
+✅ Basic parser + CLI  
+🛠 VSCode plugin (in progress)  
+🛠 Converters to/from DOCX, PPTX, XLSX (planned)  
+🌐 Website + live playground (planned)
+
+---
+
+## 🌱 Get Involved
+
+We welcome contributions of all kinds:
+- 💡 Propose ideas in [Discussions](https://github.com/OmniScriptOSF/omniscript-core/discussions)
+- 🛠 Contribute code, examples, tests
+- 📚 Improve documentation
+- 🚀 Help build the ecosystem
+
+📖 Read our [Contributing Guidelines](https://github.com/OmniScriptOSF/omniscript-core/blob/main/CONTRIBUTING.md).
+
+---
+
+## 🌐 Useful Resources
+
+- **Spec & roadmap:** [`omniscript-core/spec/`](https://github.com/OmniScriptOSF/omniscript-core/tree/main/spec)  
+- **Examples:** [`omniscript-examples`](https://github.com/OmniScriptOSF/omniscript-examples)  
+- **Website & playground:** Coming soon at *omniscript.dev*
 
 ---
 
@@ -46,3 +67,4 @@ OmniScript Format is led by **Alphin Tom** ([alpha912](https://github.com/alpha9
 ## 💡 Vision
 
 *OmniScript Format (OSF) aims to be the universal, AI-ready source language for documents, presentations, and data tables — powering collaboration and knowledge for the future.*
+
