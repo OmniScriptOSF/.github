@@ -104,7 +104,7 @@ Built for the Future
 | Repository | Description | Status | Key Features |
 |------------|-------------|--------|--------------|
 | **[omniscript-core](https://github.com/OmniScriptOSF/omniscript-core)** | 🔥 Core engine with parser, CLI & specs | ![Build](https://img.shields.io/github/actions/workflow/status/OmniScriptOSF/omniscript-core/ci.yml) | Parser, CLI tools, specifications |
-| **[omniscript-converters](https://github.com/OmniScriptOSF/omniscript-converters)** | 🔄 Professional format converters | ![npm](https://img.shields.io/npm/v/omniscript-converters) | PDF, DOCX, PPTX, XLSX export |
+| **[omniscript-converters](https://github.com/OmniScriptOSF/omniscript-converters)** | 🔄 Professional format converters | ✅ **Published** | PDF, DOCX, PPTX, XLSX export |
 | **[omniscript-examples](https://github.com/OmniScriptOSF/omniscript-examples)** | 💡 Real-world examples & templates | ![Examples](https://img.shields.io/badge/examples-50+-green) | Business docs, presentations, reports |
 | **[omniscript-vscode](https://github.com/OmniScriptOSF/omniscript-vscode)** | 🎨 VS Code extension | ![Planned](https://img.shields.io/badge/status-planned-blue) | Syntax highlighting, IntelliSense |
 | **[omniscript-site](https://github.com/OmniScriptOSF/omniscript-site)** | 🌐 Official website & documentation | ![Planned](https://img.shields.io/badge/status-planned-blue) | Interactive docs, playground |
@@ -114,8 +114,8 @@ Built for the Future
 | Package | Purpose | Version | Downloads | Dependencies |
 |---------|---------|---------|-----------|--------------|
 | **omniscript-parser** | TypeScript parsing engine | ![npm](https://img.shields.io/npm/v/omniscript-parser) | ![downloads](https://img.shields.io/npm/dm/omniscript-parser) | Zero deps |
-| **omniscript-cli** | Command-line tools | ![npm](https://img.shields.io/npm/v/omniscript-cli) | ![downloads](https://img.shields.io/npm/dm/omniscript-cli) | Parser only |
-| **omniscript-converters** | Professional converters | ![npm](https://img.shields.io/npm/v/omniscript-converters) | ![downloads](https://img.shields.io/npm/dm/omniscript-converters) | Full featured |
+| **omniscript-cli** | Command-line tools | ![npm](https://img.shields.io/npm/v/omniscript-cli) | ![downloads](https://img.shields.io/npm/dm/omniscript-cli) | Parser + converters |
+| **omniscript-converters** | Professional converters | ![npm](https://img.shields.io/npm/v/omniscript-converters) | ![downloads](https://img.shields.io/npm/dm/omniscript-converters) | Parser + formats |
 
 ---
 
@@ -132,8 +132,11 @@ Built for the Future
 # Core parsing library
 npm install omniscript-parser
 
-# Format converters
+# Professional format converters
 npm install omniscript-converters
+
+# Both together
+npm install omniscript-parser omniscript-converters
 ```
 
 </td>
@@ -166,8 +169,11 @@ osf parse hello.osf
 # Render to HTML
 osf render hello.osf --output hello.html
 
-# Convert to Word
+# Convert to multiple formats
 osf render hello.osf --format docx --output hello.docx
+osf render hello.osf --format pptx --output hello.pptx
+osf render hello.osf --format xlsx --output hello.xlsx
+osf render hello.osf --format pdf --output hello.pdf
 ```
 
 ---
