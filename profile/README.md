@@ -1,4 +1,4 @@
-# OmniScript Organization
+# OmniScript (.osf) Project
 
 <div align="center">
 
