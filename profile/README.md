@@ -1,408 +1,239 @@
+# OmniScript Format (OSF)
+
 <div align="center">
 
-<img src="https://img.shields.io/badge/OmniScript-v1.1.0-blue?style=for-the-badge" alt="OmniScript v1.1.0" />
+<img src="https://raw.githubusercontent.com/OmniScriptOSF/omniscript-core/main/assets/osf-icon-512px.png" alt="OmniScript Logo" width="200" height="200" />
 
-### 🌟 The Universal Document DSL
+# 🌟 The Universal Document DSL
 
-**One format to generate documents, slides, sheets, charts, diagrams, and code**
+**Write once, export everywhere - Documents, Slides, Sheets, Charts, Tables & More**
 
+[![v1.2.0](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/OmniScriptOSF/omniscript-core/blob/main/RELEASE_NOTES_v1.2.0.md)
+[![Tests](https://img.shields.io/badge/tests-203%2F203%20passing-brightgreen.svg)](https://github.com/OmniScriptOSF/omniscript-core)
+[![Security](https://img.shields.io/badge/security-A+-brightgreen.svg)](https://github.com/OmniScriptOSF/omniscript-core/blob/main/P%23_REVIEW_V1.2.0_FINAL_CLEAN.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![npm: parser](https://img.shields.io/npm/v/omniscript-parser.svg?label=parser)](https://www.npmjs.com/package/omniscript-parser)
-[![npm: converters](https://img.shields.io/npm/v/omniscript-converters.svg?label=converters)](https://www.npmjs.com/package/omniscript-converters)
-[![npm: cli](https://img.shields.io/npm/v/omniscript-cli.svg?label=cli)](https://www.npmjs.com/package/omniscript-cli)
-[![Production Ready](https://img.shields.io/badge/status-production%20ready-success.svg)](https://github.com/OmniScriptOSF/omniscript-core/releases/tag/v1.0.0)
 
-[🚀 Quick Start](#-quick-start) • [📦 Packages](#-packages) • [🎯 Features](#-features) • [🔗 Links](#-links)
+[🚀 Get Started](https://github.com/OmniScriptOSF/omniscript-core) • [📖 Documentation](https://omniscript.dev/docs) • [🧪 Playground](https://omniscript.dev/playground) • [💬 Discussions](https://github.com/OmniScriptOSF/omniscript-core/discussions)
 
 </div>
 
 ---
 
-## 🎉 v1.1.0 Released — Enhanced Features & Security!
+## 🎉 v1.2.0 - Tables, Includes & Enterprise Security!
 
-OmniScript Format v1.1 brings **new formatting capabilities and security improvements**:
-
-<table>
-<tr>
-<td width="50%">
-
-✅ **88/88 tests passing** (100% success rate)  
-✅ **Strikethrough text** support (`~~text~~`)  
-✅ **Unicode escapes** (`\uXXXX`, `\xXX`)  
-✅ **Position tracking** in errors (line:column)
-
-</td>
-<td width="50%">
-
-✅ **Extended HTML rendering** (lists, blockquotes, code)  
-✅ **Enhanced Markdown export** with formatting  
-✅ **XSS prevention** with HTML escaping  
-✅ **100% backward compatible** with v1.0
-
-</td>
-</tr>
-</table>
-
-**→ [📖 View v1.1.0 Release Notes](https://github.com/OmniScriptOSF/omniscript-core/releases/tag/v1.1.0)**
+**NEW in v1.2.0**:
+- ✨ **@table blocks** - Markdown-style tables with captions, alignment, and styling
+- ✨ **@include directive** - Modular documents with file composition and security
+- 🔒 **Security Grade A+** - Path traversal protection, ReDoS prevention, strict validation
+- 📊 **203 tests** - 130 core + 73 converters, 100% passing with 19 security tests
+- 🏗️ **Refactored** - 85-91% code reduction, highly modular architecture (46 focused files)
+- ✅ **Zero breaking changes** - Fully backward compatible with v1.1
 
 ---
 
 ## 💡 What is OmniScript?
 
-OmniScript Format (OSF) is a **universal document description language** designed for:
-
-<table>
-<tr>
-<td width="50%">
-
-🤖 **LLM-native workflows**  
-AI agents can generate structured documents
-
-📄 **Multi-format output**  
-Write once, export to PDF, DOCX, PPTX, XLSX
-
-🔄 **Git-friendly**  
-Plain text format, perfect for version control
-
-</td>
-<td width="50%">
-
-🚀 **Developer-first**  
-TypeScript API, CLI tools, VSCode extension
-
-📊 **Data visualization**  
-Built-in charts, diagrams, and code blocks
-
-📝 **Simple syntax**  
-Human-readable, easy to learn
-
-</td>
-</tr>
-</table>
-
-### Example OSF Document
+OmniScript Format (OSF) is a **universal document DSL** that lets you write structured content once and export to multiple formats:
 
 ```osf
-@meta {
-  title: "Sales Report Q4 2025";
-  author: "Finance Team";
-}
+@meta { title: "Sales Report"; date: "2025-10-16"; }
 
 @doc {
-  content: "# Executive Summary
+  # Q4 Sales Report
+  **Outstanding performance** across all regions!
+}
+
+@table {
+  caption: "Regional Performance";
+  style: "bordered";
+  alignment: ["left", "right", "center"];
   
-  Revenue increased **35%** this quarter.
-  ";
+  | Region | Revenue | Status |
+  | --- | --- | --- |
+  | North | $120K | ✓ Growth |
+  | South | $95K | → Stable |
+  | East | $145K | ✓ Growth |
 }
 
 @chart {
   type: "bar";
-  title: "Quarterly Revenue";
+  title: "Revenue by Region";
   data: [
-    { label: "Q1"; values: [100]; },
-    { label: "Q2"; values: [120]; },
-    { label: "Q3"; values: [150]; },
-    { label: "Q4"; values: [180]; }
+    { label: "North"; values: [120]; },
+    { label: "South"; values: [95]; },
+    { label: "East"; values: [145]; }
   ];
 }
+
+@include { path: "./sections/recommendations.osf"; }
 ```
 
-**Output:** PDF, DOCX, PPTX, or XLSX with charts rendered natively
+**Export to**: PDF 📄 • DOCX 📝 • PPTX 🎞️ • XLSX 📊 • HTML 🌐 • Markdown 📃
 
 ---
 
 ## 🚀 Quick Start
 
-**1. Install CLI**
+### Install
 
 ```bash
-npm install -g omniscript-cli
+# CLI tools (v1.2.1)
+npm install -g omniscript-cli@1.2.1
+
+# Libraries (v1.2.0)
+npm install omniscript-parser@1.2.0
+npm install omniscript-converters@1.2.0
 ```
 
-**2. Create a Document**
+### Use
 
 ```bash
-echo '@meta { title: "Hello World"; }
-@doc { 
-  content: "# My First Document
-  
-  This is **bold**, *italic*, __underlined__, and ~~strikethrough~~!
-  
-  Unicode: ✓ ✗ → © ™
-  "; 
-}' > hello.osf
-```
+# Create document
+echo '@doc { # Hello World }' > hello.osf
 
-**3. Export to Any Format**
-
-```bash
+# Export to PDF
 osf render hello.osf --format pdf --output hello.pdf
-```
 
-**4. Try the Playground**
+# Parse and validate
+osf parse hello.osf
 
-Visit our **[Interactive Playground →](https://omniscriptosf.github.io/playground)** to try OSF in your browser with live preview!
-
----
-
-## 📦 Packages
-
-All packages are published on npm and available for installation:
-
-<table>
-<thead>
-<tr>
-<th width="25%">Package</th>
-<th width="15%">Version</th>
-<th width="40%">Description</th>
-<th width="20%">Links</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>omniscript-parser</strong></td>
-<td><code>v1.1.0</code></td>
-<td>Zero-dependency parser for OSF → AST</td>
-<td><a href="https://www.npmjs.com/package/omniscript-parser">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-core/tree/main/parser">GitHub</a></td>
-</tr>
-<tr>
-<td><strong>omniscript-converters</strong></td>
-<td><code>v1.1.0</code></td>
-<td>AST → PDF/DOCX/PPTX/XLSX converters</td>
-<td><a href="https://www.npmjs.com/package/omniscript-converters">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-converters">GitHub</a></td>
-</tr>
-<tr>
-<td><strong>omniscript-cli</strong></td>
-<td><code>v1.1.0</code></td>
-<td>Command-line tools (parse, lint, render)</td>
-<td><a href="https://www.npmjs.com/package/omniscript-cli">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-core/tree/main/cli">GitHub</a></td>
-</tr>
-</tbody>
-</table>
-
-### Installation
-
-```bash
-# CLI (includes parser and converters)
-npm install -g omniscript-cli
-
-# Libraries for programmatic use
-npm install omniscript-parser omniscript-converters
+# Format code
+osf format hello.osf
 ```
 
 ---
 
-## 🎯 Features
+## 📦 Official Packages
 
-### v1.0 Block Types
-
-<table>
-<thead>
-<tr>
-<th width="20%">Block</th>
-<th width="30%">Purpose</th>
-<th width="50%">Example Use Cases</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>@meta</code></td>
-<td>Document metadata</td>
-<td>Title, author, version, tags</td>
-</tr>
-<tr>
-<td><code>@doc</code></td>
-<td>Markdown content</td>
-<td>Articles, reports, documentation</td>
-</tr>
-<tr>
-<td><code>@slide</code></td>
-<td>Presentation slides</td>
-<td>Pitch decks, training materials</td>
-</tr>
-<tr>
-<td><code>@sheet</code></td>
-<td>Spreadsheet data</td>
-<td>Tables, budgets, data exports</td>
-</tr>
-<tr>
-<td><code>@chart</code> ⭐</td>
-<td>Data visualization</td>
-<td>Bar, line, pie, scatter, area charts</td>
-</tr>
-<tr>
-<td><code>@diagram</code> ⭐</td>
-<td>Visual diagrams</td>
-<td>Flowcharts, sequence, Gantt, mindmaps</td>
-</tr>
-<tr>
-<td><code>@code</code> ⭐</td>
-<td>Syntax-highlighted code</td>
-<td>Code examples, tutorials, documentation</td>
-</tr>
-</tbody>
-</table>
-
-<sub>⭐ = New in v1.0</sub>
-
-### Output Formats
-
-<table>
-<thead>
-<tr>
-<th width="20%">Format</th>
-<th width="20%">Extension</th>
-<th width="60%">Rendering Engine</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PDF</strong></td>
-<td><code>.pdf</code></td>
-<td>Puppeteer + Chart.js + Mermaid + Prism.js</td>
-</tr>
-<tr>
-<td><strong>DOCX</strong></td>
-<td><code>.docx</code></td>
-<td>Microsoft Word (via <code>docx</code> library)</td>
-</tr>
-<tr>
-<td><strong>PPTX</strong></td>
-<td><code>.pptx</code></td>
-<td>PowerPoint (native charts via PptxGenJS)</td>
-</tr>
-<tr>
-<td><strong>XLSX</strong></td>
-<td><code>.xlsx</code></td>
-<td>Excel (via ExcelJS)</td>
-</tr>
-</tbody>
-</table>
-
-### Advanced Capabilities
-
-<table>
-<tr>
-<td width="50%">
-
-✅ Multi-series charts with customizable colors  
-✅ Mermaid diagrams (flowchart, sequence, gantt)  
-✅ Syntax highlighting for 50+ languages
-
-</td>
-<td width="50%">
-
-✅ Line numbers and selective highlighting  
-✅ TypeScript-first with full type safety  
-✅ Zero-configuration — works out of the box
-
-</td>
-</tr>
-</table>
+| Package | Version | Description | Tests | Status |
+|---------|---------|-------------|-------|--------|
+| [**omniscript-parser**](https://www.npmjs.com/package/omniscript-parser) | 1.2.0 | Zero-dependency TypeScript parser | 83/83 | ✅ [NPM](https://www.npmjs.com/package/omniscript-parser) |
+| [**omniscript-cli**](https://www.npmjs.com/package/omniscript-cli) | 1.2.1 | Command-line tools | 47/47 | ✅ [NPM](https://www.npmjs.com/package/omniscript-cli) |
+| [**omniscript-converters**](https://www.npmjs.com/package/omniscript-converters) | 1.2.0 | PDF, DOCX, PPTX, XLSX converters | 73/73 | ✅ [NPM](https://www.npmjs.com/package/omniscript-converters) |
+| [**omniscript-vscode**](https://github.com/OmniScriptOSF/omniscript-vscode) | 0.1.0 | VSCode extension with IntelliSense | - | ✅ Stable |
+| [**omniscript-examples**](https://github.com/OmniScriptOSF/omniscript-examples) | - | 25+ professional examples | All ✓ | ✅ Complete |
 
 ---
 
-## 🏗️ Repositories
+## ✨ Features
 
-<table>
-<thead>
-<tr>
-<th width="35%">Repository</th>
-<th width="45%">Purpose</th>
-<th width="20%">Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/OmniScriptOSF/omniscript-core">omniscript-core</a></td>
-<td>Parser, CLI, v1.1 spec</td>
-<td>✅ v1.1.0</td>
-</tr>
-<tr>
-<td><a href="https://github.com/OmniScriptOSF/omniscript-converters">omniscript-converters</a></td>
-<td>Format converters</td>
-<td>✅ v1.1.0</td>
-</tr>
-<tr>
-<td><a href="https://github.com/OmniScriptOSF/omniscript-examples">omniscript-examples</a></td>
-<td>25+ example documents</td>
-<td>✅ Active</td>
-</tr>
-<tr>
-<td><a href="https://github.com/OmniScriptOSF/omniscriptosf.github.io">omniscriptosf.github.io</a></td>
-<td>Documentation site</td>
-<td>✅ Live</td>
-</tr>
-<tr>
-<td><a href="https://github.com/OmniScriptOSF/.github">.github</a></td>
-<td>Organization profile</td>
-<td>✅ This repo</td>
-</tr>
-</tbody>
-</table>
+### Block Types
+
+- **@meta** - Document metadata
+- **@doc** - Markdown content with rich formatting
+- **@slide** - Presentation slides
+- **@sheet** - Spreadsheets with formulas
+- **@table** - *NEW v1.2* Markdown-style tables
+- **@chart** - Bar, line, pie charts
+- **@diagram** - Flowcharts, sequences (Mermaid/Graphviz)
+- **@code** - Syntax-highlighted code blocks
+
+### Directives
+
+- **@include** - *NEW v1.2* File composition and modular documents
+
+### Export Formats
+
+- PDF with charts and diagrams
+- DOCX with tables and formatting
+- PPTX with native charts
+- XLSX with formulas
+- HTML with live rendering
+- Markdown with formatting
 
 ---
 
-## 🔗 Links
+## 🏆 Why OmniScript?
 
-### Documentation
-- 📖 **[Full Documentation](https://omniscriptosf.github.io/docs)**
-- 🎮 **[Interactive Playground](https://omniscriptosf.github.io/playground)**
-- 📝 **[v1.0 Specification](https://github.com/OmniScriptOSF/omniscript-core/blob/main/spec/v1.0/osf-spec.md)**
-- 🎓 **[Getting Started Guide](https://omniscriptosf.github.io/docs/getting-started/installation)**
-- 💡 **[Example Library](https://github.com/OmniScriptOSF/omniscript-examples)**
-
-### Community
-- 🐛 **[Report Issues](https://github.com/OmniScriptOSF/omniscript-core/issues)**
-- 💬 **[Discussions](https://github.com/OmniScriptOSF/omniscript-core/discussions)**
-- 📢 **[Release Notes](https://github.com/OmniScriptOSF/omniscript-core/releases)**
-
-### npm Packages
-- 📦 **[omniscript-parser](https://www.npmjs.com/package/omniscript-parser)**
-- 📦 **[omniscript-converters](https://www.npmjs.com/package/omniscript-converters)**
-- 📦 **[omniscript-cli](https://www.npmjs.com/package/omniscript-cli)**
+✅ **Git-Friendly** - Plain text format perfect for version control  
+✅ **AI-Friendly** - Easy for AI to generate and understand  
+✅ **Developer-First** - Designed for technical writers and developers  
+✅ **Type-Safe** - Full TypeScript support with 0 'any' types  
+✅ **Secure** - Grade A+ security with comprehensive testing  
+✅ **Fast** - Zero-dependency parser, blazing performance  
+✅ **Modular** - Compose documents from reusable sections  
+✅ **Extensible** - Easy to add custom blocks and renderers
 
 ---
 
-## 📊 Project Stats
+## 🔒 Security
 
-<table>
-<tr>
-<td width="50%">
+OmniScript v1.2.0 achieves **Security Grade A+**:
 
-**Total Tests:** 88/88 passing (100%)  
-**Code Coverage:** Branch coverage >90%  
-**TypeScript:** Strict mode, 87.5% fewer `any` types
+- ✅ Path traversal protection (prevents directory escape)
+- ✅ ReDoS prevention (bounded regex quantifiers)
+- ✅ XSS protection (multi-layer sanitization)
+- ✅ Strict input validation (all inputs validated)
+- ✅ Defense-in-depth architecture
+- ✅ 19 comprehensive security tests
 
-</td>
-<td width="50%">
+[View Security Review →](https://github.com/OmniScriptOSF/omniscript-core/blob/main/P%23_REVIEW_CLEAN_SUMMARY.md)
 
-**Security:** XSS prevention, zero critical issues  
-**Package Size:** 79 kB total (all 3 packages)  
-**Dependencies:** Minimal (parser has zero deps)
+---
 
-</td>
-</tr>
-</table>
+## 📊 Stats
+
+| Metric | Value |
+|--------|-------|
+| **Tests** | 203/203 passing (100%) |
+| **Core Tests** | 130 (parser + CLI) |
+| **Converter Tests** | 73 (all formats) |
+| **Security Tests** | 19 comprehensive |
+| **Security Grade** | A+ |
+| **Lines of Code** | 3,059 (highly modular) |
+| **Dependencies** | 0 (parser) |
+| **Block Types** | 8 |
+| **Export Formats** | 6 |
+| **Examples** | 25+ |
+
+---
+
+## 🎯 Use Cases
+
+- 📚 **Technical Documentation** - Write once, export to multiple formats
+- 🎓 **Education** - Create worksheets, slides, and exercises
+- 💼 **Business Reports** - Generate reports with charts and tables
+- 📊 **Data Visualization** - Build dashboards and analytics
+- 🎨 **Presentations** - Professional slides with code and diagrams
+- 📝 **API Documentation** - Version-controlled documentation
+- 🔬 **Research Papers** - Academic papers with citations and tables
+
+---
+
+## 🌍 Community
+
+- **GitHub**: [OmniScriptOSF](https://github.com/OmniScriptOSF)
+- **Website**: [omniscript.dev](https://omniscript.dev)
+- **Playground**: [omniscript.dev/playground](https://omniscript.dev/playground)
+- **Discussions**: [GitHub Discussions](https://github.com/OmniScriptOSF/omniscript-core/discussions)
+- **NPM**: [omniscript packages](https://www.npmjs.com/search?q=omniscript)
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see individual repository README files for contribution guidelines.
+We welcome contributions! See [CONTRIBUTING.md](https://github.com/OmniScriptOSF/omniscript-core/blob/main/CONTRIBUTING.md) for guidelines.
+
+Ways to contribute:
+- 🐛 Report bugs
+- 💡 Suggest features
+- 📝 Improve docs
+- 🔧 Submit PRs
+- 🎨 Create themes
+- 📚 Add examples
 
 ---
 
 ## 📄 License
 
-All OmniScript OSF packages are released under the **MIT License**.
+MIT License - See [LICENSE](https://github.com/OmniScriptOSF/omniscript-core/blob/main/LICENSE)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the OmniScript OSF Team**
+**Built with ❤️ by the OmniScript community**
 
-[Website](https://omniscriptosf.github.io) • [GitHub](https://github.com/OmniScriptOSF) • [npm](https://www.npmjs.com/search?q=omniscript)
+[⭐ Star us on GitHub](https://github.com/OmniScriptOSF/omniscript-core) • [📖 Read the Docs](https://omniscript.dev/docs) • [🧪 Try the Playground](https://omniscript.dev/playground)
 
 </div>
