@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/OmniScript-v1.0.0-blue?style=for-the-badge" alt="OmniScript v1.0.0" />
+<img src="https://img.shields.io/badge/OmniScript-v1.1.0-blue?style=for-the-badge" alt="OmniScript v1.1.0" />
 
 ### 🌟 The Universal Document DSL
 
@@ -18,30 +18,32 @@
 
 ---
 
-## 🎉 v1.0.0 Released — Production Ready!
+## 🎉 v1.1.0 Released — Enhanced Features & Security!
 
-OmniScript Format v1.0 is **complete, tested, and production-ready**:
+OmniScript Format v1.1 brings **new formatting capabilities and security improvements**:
 
 <table>
 <tr>
 <td width="50%">
 
-✅ **152/152 tests passing** (100% success rate)  
-✅ **3 npm packages published** and live  
-✅ **v1.0 specification finalized**
+✅ **88/88 tests passing** (100% success rate)  
+✅ **Strikethrough text** support (`~~text~~`)  
+✅ **Unicode escapes** (`\uXXXX`, `\xXX`)  
+✅ **Position tracking** in errors (line:column)
 
 </td>
 <td width="50%">
 
-✅ **All formats supported** (PDF, DOCX, PPTX, XLSX)  
-✅ **Interactive playground** with live preview  
-✅ **Zero critical security issues**
+✅ **Extended HTML rendering** (lists, blockquotes, code)  
+✅ **Enhanced Markdown export** with formatting  
+✅ **XSS prevention** with HTML escaping  
+✅ **100% backward compatible** with v1.0
 
 </td>
 </tr>
 </table>
 
-**→ [📖 View Release Notes](https://github.com/OmniScriptOSF/omniscript-core/releases/tag/v1.0.0)**
+**→ [📖 View v1.1.0 Release Notes](https://github.com/OmniScriptOSF/omniscript-core/releases/tag/v1.1.0)**
 
 ---
 
@@ -121,13 +123,20 @@ npm install -g omniscript-cli
 
 ```bash
 echo '@meta { title: "Hello World"; }
-@doc { content: "# My First Document"; }' > hello.osf
+@doc { 
+  content: "# My First Document
+  
+  This is **bold**, *italic*, __underlined__, and ~~strikethrough~~!
+  
+  Unicode: ✓ ✗ → © ™
+  "; 
+}' > hello.osf
 ```
 
 **3. Export to Any Format**
 
 ```bash
-osf export hello.osf --output hello.pdf
+osf render hello.osf --format pdf --output hello.pdf
 ```
 
 **4. Try the Playground**
@@ -152,20 +161,20 @@ All packages are published on npm and available for installation:
 <tbody>
 <tr>
 <td><strong>omniscript-parser</strong></td>
-<td><code>v1.0.0</code></td>
+<td><code>v1.1.0</code></td>
 <td>Zero-dependency parser for OSF → AST</td>
 <td><a href="https://www.npmjs.com/package/omniscript-parser">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-core/tree/main/parser">GitHub</a></td>
 </tr>
 <tr>
 <td><strong>omniscript-converters</strong></td>
-<td><code>v1.0.0</code></td>
+<td><code>v1.1.0</code></td>
 <td>AST → PDF/DOCX/PPTX/XLSX converters</td>
 <td><a href="https://www.npmjs.com/package/omniscript-converters">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-converters">GitHub</a></td>
 </tr>
 <tr>
 <td><strong>omniscript-cli</strong></td>
-<td><code>v1.0.0</code></td>
-<td>Command-line tools (parse, lint, export)</td>
+<td><code>v1.1.0</code></td>
+<td>Command-line tools (parse, lint, render)</td>
 <td><a href="https://www.npmjs.com/package/omniscript-cli">npm</a> • <a href="https://github.com/OmniScriptOSF/omniscript-core/tree/main/cli">GitHub</a></td>
 </tr>
 </tbody>
@@ -306,13 +315,13 @@ npm install omniscript-parser omniscript-converters
 <tbody>
 <tr>
 <td><a href="https://github.com/OmniScriptOSF/omniscript-core">omniscript-core</a></td>
-<td>Parser, CLI, v1.0 spec</td>
-<td>✅ v1.0.0</td>
+<td>Parser, CLI, v1.1 spec</td>
+<td>✅ v1.1.0</td>
 </tr>
 <tr>
 <td><a href="https://github.com/OmniScriptOSF/omniscript-converters">omniscript-converters</a></td>
 <td>Format converters</td>
-<td>✅ v1.0.0</td>
+<td>✅ v1.1.0</td>
 </tr>
 <tr>
 <td><a href="https://github.com/OmniScriptOSF/omniscript-examples">omniscript-examples</a></td>
@@ -361,15 +370,15 @@ npm install omniscript-parser omniscript-converters
 <tr>
 <td width="50%">
 
-**Total Tests:** 152/152 passing (100%)  
+**Total Tests:** 88/88 passing (100%)  
 **Code Coverage:** Branch coverage >90%  
-**TypeScript:** Strict mode enabled
+**TypeScript:** Strict mode, 87.5% fewer `any` types
 
 </td>
 <td width="50%">
 
-**Security:** Zero critical issues  
-**Package Size:** 74 kB total (all 3 packages)  
+**Security:** XSS prevention, zero critical issues  
+**Package Size:** 79 kB total (all 3 packages)  
 **Dependencies:** Minimal (parser has zero deps)
 
 </td>
