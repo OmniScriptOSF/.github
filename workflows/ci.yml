@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION_MATRIX: '["18.x", "20.x", "22.x"]'
-  PRIMARY_NODE_VERSION: '20.x'
+  NODE_VERSION_MATRIX: '["22.x"]'
+  PRIMARY_NODE_VERSION: '22.x'
 
 jobs:
   # Job 1: Code Quality Checks
@@ -30,43 +30,30 @@ jobs:
         with:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Type checking
         run: |
           cd omniscript-core
-          pnpm run typecheck
+          bun run typecheck
 
       - name: Lint check
         run: |
           cd omniscript-core
-          pnpm run lint:check
+          bun run lint:check
 
       - name: Format check
         run: |
           cd omniscript-core
-          pnpm run format:check
+          bun run format:check
 
   # Job 2: Build and Test on Multiple Platforms
   test:
@@ -77,7 +64,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [22.x]
 
     steps:
       - name: Checkout code
@@ -88,38 +75,25 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Build packages
         run: |
           cd omniscript-core
-          pnpm run build
+          bun run build
 
       - name: Run tests
         run: |
           cd omniscript-core
-          pnpm test
+          bun run test
 
       - name: Upload test results
         if: always()
@@ -145,25 +119,25 @@ jobs:
         with:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Build packages
         run: |
           cd omniscript-core
-          pnpm run build
+          bun run build
 
       - name: Run tests with coverage
         run: |
           cd omniscript-core
-          pnpm run test:coverage
+          bun run test:coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -194,20 +168,20 @@ jobs:
         with:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
-      - name: Run npm audit
+      - name: Run bun audit
         run: |
           cd omniscript-core
-          pnpm audit --audit-level=moderate || true
+          bun audit --audit-level=moderate || true
 
       - name: Run Snyk security scan
         uses: snyk/actions/node@master
@@ -233,10 +207,10 @@ jobs:
         with:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
+          bun-version: "1.3.5"
 
       - name: Install Chromium for Puppeteer
         run: |
@@ -246,23 +220,23 @@ jobs:
       - name: Install dependencies (core)
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
-          pnpm run build
+          bun install --frozen-lockfile
+          bun run build
 
       - name: Install dependencies (converters)
         run: |
           cd omniscript-converters
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Build converters
         run: |
           cd omniscript-converters
-          pnpm run build
+          bun run build
 
       - name: Run converter tests
         run: |
           cd omniscript-converters
-          pnpm test || echo "Converter tests not yet implemented"
+          bun run test || echo "Converter tests not yet implemented"
 
   # Job 6: Build Documentation
   docs:
@@ -301,20 +275,20 @@ jobs:
         with:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Build packages
         run: |
           cd omniscript-core
-          pnpm run build
+          bun run build
 
       - name: Extract version from tag
         id: version
@@ -369,20 +343,20 @@ jobs:
           node-version: ${{ env.PRIMARY_NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 10
+          bun-version: "1.3.5"
 
       - name: Install dependencies
         run: |
           cd omniscript-core
-          pnpm install --frozen-lockfile
+          bun install --frozen-lockfile
 
       - name: Build packages
         run: |
           cd omniscript-core
-          pnpm run build
+          bun run build
 
       - name: Publish omniscript-parser
         run: |
